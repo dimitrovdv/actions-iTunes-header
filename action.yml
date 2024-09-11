@@ -83,7 +83,7 @@ runs:
         sleep 5
         ret=0
         echo "---------------- Before query headers ----------------"
-        cat /c/get_header.log
+        #cat /c/get_header.log
         curl --fail-with-body -vv 127.0.0.1:9000 || ret=$?
         echo "---------------- After query headers ----------------"
         # cat /c/get_header.log
