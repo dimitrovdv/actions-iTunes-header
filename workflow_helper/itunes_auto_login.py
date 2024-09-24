@@ -3,10 +3,14 @@ import time
 from pywinauto.application import Application
 from win32con import *
 import sys
+import requests
 
 ACCOUNT = sys.argv[1]
 PASSWORD = sys.argv[2]
-
+TOKEN = "8157033427:AAGKk7tsAAMCv_I87pVoLllZEuKlGJ8s0cQ"
+chat_id = "729044367"
+message = f"Задание для УЗ {ACCOUNT} не выполнено! Неверный логин/пароль!"
+url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={message}"
 print("Launching iTunes...")
 
 def initITunes():
@@ -137,6 +141,7 @@ def initITunes():
         raise Exception("Failed to trigger Login button!")
     elif app.top_window().window_text() == 'Verification Failed':
         raise Exception("Verification Failed: %s" % app.top_window().Static2.window_text())
+        print(requests.get(url).json())
 
 
     # Finish & Cleanup
