@@ -138,10 +138,12 @@ def initITunes():
     debugTopWin()
     
     if app.top_window().handle == dialogWrap.handle:
+        print(requests.get(url).json())
         raise Exception("Failed to trigger Login button!")
     elif app.top_window().window_text() == 'Verification Failed':
-        raise Exception("Verification Failed: %s" % app.top_window().Static2.window_text())
         print(requests.get(url).json())
+        raise Exception("Verification Failed: %s" % app.top_window().Static2.window_text())
+        
 
 
     # Finish & Cleanup
